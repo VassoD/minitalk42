@@ -10,6 +10,6 @@
 char buffer[BUFFER_SIZE];
 
 void	ft_putchar(char c);
-int     t_atoi(const char *nptr);
+int     ft_atoi(const char *nptr);
 void	ft_putnbr(int n);
 #endif
