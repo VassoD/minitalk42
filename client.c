@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#define SLEEP_TIME 100
+#define SLEEP_TIME 500
 
 void	char_to_binary(char c, int pid)
 {
@@ -43,9 +43,14 @@ void	string_to_binary(char *str, int pid)
 
 int	main(int argc, char **argv)
 {
-	if (argc == 3)
-		string_to_binary(argv[2], atoi(argv[1]));
+	int	pid;
+
+	if (argc != 3)
+		return (write (2, "Usage: [Server PID] [Message]\n", 31), 1);
+	pid = ft_atoi(argv[1]);
+	if (pid <= 1 || kill(pid, 0) != 0)
+		return (write (2, "Error : Invalid PID.\n", 22), 1);
 	else
-		write (1, "Usage: [Server PID] [Message]", 29);
+		string_to_binary(argv[2], pid);
 	return (0);
 }

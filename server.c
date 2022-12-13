@@ -45,14 +45,16 @@ void	build_string(int byte)
 		c <<= 1;
 }
 
-void	handle_sigusr1()
+void	handle_sigusr1(int sig)
 {
+    (void)sig;
 	build_string(1);
 }
 
-void	handle_sigusr2(void)
+void	handle_sigusr2(int sig)
 {
-	build_string(0);
+    (void)sig;
+    build_string(0);
 }
 
 int	main(void)
@@ -66,7 +68,6 @@ int	main(void)
 	signal(SIGUSR1, handle_sigusr1);
 	signal(SIGUSR2, handle_sigusr2);
 	while (1)
-	{
-	}
+        pause();
 	return (0);
 }
