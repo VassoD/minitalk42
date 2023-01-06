@@ -6,12 +6,12 @@
 /*   By: vdoropou <vdoropou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:15:08 by vdoropou          #+#    #+#             */
-/*   Updated: 2022/12/12 18:36:52 by vdoropou         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:45:44 by vdoropou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#define SLEEP_TIME 500
+#define SLEEP_TIME 150
 
 void	char_to_binary(char c, int pid)
 {
@@ -31,8 +31,6 @@ void	char_to_binary(char c, int pid)
 
 void	string_to_binary(char *str, int pid)
 {
-	if (pid <= 1)
-		return ;
 	while (*str)
 	{
 		char_to_binary(*str, pid);
@@ -48,7 +46,7 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		return (write (2, "Usage: [Server PID] [Message]\n", 31), 1);
 	pid = ft_atoi(argv[1]);
-	if (pid <= 1 || kill(pid, 0) != 0)
+	if (pid <= 1)
 		return (write (2, "Error : Invalid PID.\n", 22), 1);
 	else
 		string_to_binary(argv[2], pid);

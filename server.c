@@ -6,7 +6,7 @@
 /*   By: vdoropou <vdoropou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 17:51:09 by vdoropou          #+#    #+#             */
-/*   Updated: 2022/12/12 20:45:42 by vdoropou         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:29:13 by vdoropou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ void	build_string(int byte)
 		c <<= 1;
 }
 
-void	handle_sigusr1(int sig)
+void	handle_sigusr1(int x)
 {
-    (void)sig;
+	(void)x;
 	build_string(1);
 }
 
-void	handle_sigusr2(int sig)
+void	handle_sigusr2(int x)
 {
-    (void)sig;
-    build_string(0);
+	(void)x;
+	build_string(0);
 }
 
 int	main(void)
@@ -68,6 +68,7 @@ int	main(void)
 	signal(SIGUSR1, handle_sigusr1);
 	signal(SIGUSR2, handle_sigusr2);
 	while (1)
-        pause();
+	{
+	}
 	return (0);
 }
